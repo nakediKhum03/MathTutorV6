@@ -1,4 +1,4 @@
-# MathTutorV5
+# MathTutorV6
 
 ******************************************************************************************************
 *                               Welcome to the Simply Silly Math Tutor                               *
@@ -134,7 +134,7 @@ Average:         80%
 
 
 That's all folks!
-Come back for version four to see what is in store!
+Thank you!
 End of program
 
 Keep calm and do math
