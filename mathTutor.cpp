@@ -370,31 +370,38 @@ void DisplaySummaryReport(const vector<vector <int>> &allQuestions) {
 
  ****************************************************************************/
 
-void SaveCurrentGame (string username, const vector<vector <int>> &allQuestions) {
+void SaveCurrentGame (string userName, const vector<vector <int>> &allQuestions) {
 
     string userInput;
+    ofstream outFS;
 
-    while (true) {
-        cout << "Do you want to continue (y=yes || n=no)? " << endl;
-        getline(cin, userInput);
+    userInput = YesNoQuestion ("Do you want to save the game? (y/n)") << endl;
 
-        for (char & i : userInput) {
-            i = static_cast<char> (tolower(i));
+    if (userInput == "n" || userInput == "no") {
+        cout << "Save game cancelled" << endl;
+
+        return;
+    }
+
+    cout << "Saving game...please wait" << endl;
+
+    outFS.open(FILE_NAME);
+        if (outFS.is_open()) {
+            throw >> runtime_error ("Could not open file " + FILE_NAME + " for writing");
         }
 
-        if (userInput == "y" || userInput == "yes" ||
-            userInput == "n" || userInput == "no") {
-            break;
-            } else {
-                cout << "Invalid input, please try again..." << endl;
-                cout << endl;
-            }
-    } // end of while true loop
+    for () {
+        for (int i = 0; i < allQuestions.size() ; i++) {
+            outFS << allQuestions.at(i).at(0);
+            outFS << allQuestions.at(i).at(1);
+            outFS << allQuestions.at(i).at(2);
+            outFS << allQuestions.at(i).at(3);
+        }
+        outFS << endl;
+    }
+        outFS.close();
 
-
-    return userInput;
-
-
+        cout << allQuestions.size() << " questions saved succesfully." <<  endl;
 
 
 

@@ -70,7 +70,7 @@ int main () {
 
           allQuestions.push_back(currentQuestion);
 
-          userInput = AskToPlayAgain(userName);
+          userInput = YesNoQuestion(userName);
 
      } while (userInput == "yes" || userInput == "y");
 
