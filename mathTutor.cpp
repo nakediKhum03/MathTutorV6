@@ -1,15 +1,9 @@
-//
-// Created by Moeketsi Reatshepa Khumo Nakedi on 2025/11/21.
-//
-//
-// Created by Moeketsi Reatshepa Khumo Nakedi on 2025/11/14.
-//
 
 /*
-* Title:       Math Tutor V5
-*Programer(s): Khumo Nakedi & Christopher Thomas
+* Title:       Math Tutor V6
+*Programer(s): Khumo Nakedi & Kezey Boye
 *Date:         10/29/2025
-*Github URL:   https://github.com/nakediKhum03/MathTutorV4.git
+*Github URL:   https://github.com/nakediKhum03/MathTutorV6.git
 *Description:  A simple math tutor designed to help students practice and improve their basic  math arithmetic skills.
 *              This program randomly generates integer-based math problems—addition, subtraction, multiplication,
 *              and division for the user to solve. The user's name is collected using getline, and they are then
@@ -41,6 +35,8 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <fstream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -49,6 +45,7 @@ using namespace std;
 
 constexpr int MAX_ATTEMPTS = 3;
 constexpr int LEVEL_CHANGE = 10; //How much to increase the range when leveling up and down
+const string FILE_NAME = "mathtutor.txt";
 
 vector <int> g_attempts;
 
@@ -182,9 +179,10 @@ vector <int>GenerateRandomQuestion ( int mathLevel) {
     return question;
 }
 
-/****
- * Give 3 attempts to use to give them a display oof what level they are currently on
- *****/
+/*************************************************
+ Give 3 attempts to use to give them a display of
+ what level they are currently on
+ *************************************************/
 
 bool GiveThreeAttempts (const string& userName, vector<int> currentQuestion) {
 
@@ -237,7 +235,7 @@ bool GiveThreeAttempts (const string& userName, vector<int> currentQuestion) {
  *Returns the user's input as a string
  *************************************************/
 
-string AskToPlayAgain(string userName) {
+string YesNoQuestion(string question) {
     string userInput;
 
     while (true) {
@@ -365,6 +363,40 @@ void DisplaySummaryReport(const vector<vector <int>> &allQuestions) {
     cout << "Come back for version four to see what is in store!" << endl;
     cout << "End of program" << endl; // end of program
     cout << endl;
+
+}
+
+/****************************************************************************
+
+ ****************************************************************************/
+
+void SaveCurrentGame (string username, const vector<vector <int>> &allQuestions) {
+
+    string userInput;
+
+    while (true) {
+        cout << "Do you want to continue (y=yes || n=no)? " << endl;
+        getline(cin, userInput);
+
+        for (char & i : userInput) {
+            i = static_cast<char> (tolower(i));
+        }
+
+        if (userInput == "y" || userInput == "yes" ||
+            userInput == "n" || userInput == "no") {
+            break;
+            } else {
+                cout << "Invalid input, please try again..." << endl;
+                cout << endl;
+            }
+    } // end of while true loop
+
+
+    return userInput;
+
+
+
+
 
 }
 

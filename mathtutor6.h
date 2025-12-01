@@ -24,8 +24,10 @@ int GetNumericValue();
 bool GiveThreeAttempts (const string& userName, vector <int> currentQuestion);
 void CheckForLevelChange (int &totalCorrect, int &totalIncorrect,
                           int &mathLevel);
-string AskToPlayAgain (string userName);
+string YesNoQuestion (string userName);
 void DisplaySummaryReport(const vector<vector <int>> &allQuestions);
+void SaveCurrentGame (string username, const vector<vector <int>> &allQuestions);
+
 
 #endif //MATHTUTOR_H
 

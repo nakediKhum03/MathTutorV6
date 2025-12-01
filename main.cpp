@@ -1,8 +1,8 @@
 /*
-* Title:       Math Tutor V5
-*Programer(s): Khumo Nakedi
+* Title:       Math Tutor V6
+*Programer(s): Khumo Nakedi & Kezey Boye
 *Date:         10/29/2025
-*Github URL:   https://github.com/nakediKhum03/MathTutorV5/blob/main/mathtutor5.h
+*Github URL:   https://github.com/nakediKhum03/MathTutorV6.git
 *Description:  A simple math tutor designed to help students practice and improve their basic  math arithmetic skills.
 *              This program randomly generates integer-based math problems—addition, subtraction, multiplication,
 *              and division for the user to solve. The user's name is collected using getline, and they are then

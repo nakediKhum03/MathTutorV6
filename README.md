@@ -143,4 +143,6 @@ Process finished with exit code 0
 
 ## Maintainers
 
-[@nakediKhum03](...) Khumo Nakedi
+[@nakediKhum03](...) Khumo Nakedi 
+
+[@kezeyboye](...) Kezey Boye  
