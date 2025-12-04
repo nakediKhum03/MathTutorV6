@@ -21,12 +21,13 @@ void DisplayGameIntro ();
 string GetUserName ();
 vector <int>GenerateRandomQuestion (int mathLevel);
 int GetNumericValue();
-bool GiveThreeAttempts (const string& userName, vector <int> currentQuestion);
+bool GiveThreeAttempts (string userName, vector <int> currentQuestion);
 void CheckForLevelChange (int &totalCorrect, int &totalIncorrect,
                           int &mathLevel);
-string YesNoQuestion (const string& userName);
+string YesNoQuestion (string question);
 void DisplaySummaryReport(const vector<vector <int>> &allQuestions);
-void SaveCurrentGame (const string& username, const vector<vector <int>> &allQuestions);
+void SaveCurrentGame (string username, vector<vector <int>> &allQuestions);
+int LoadPreviousGame (string username, vector<vector <int>> &allQuestions);
 
 
 #endif //MATHTUTOR_H

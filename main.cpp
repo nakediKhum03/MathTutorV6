@@ -55,8 +55,24 @@ int main () {
      DisplayGameIntro();
      userName = GetUserName();
 
+     try {
+          mathLevel = LoadPreviousGame (userName, allQuestions);
+     } catch (runtime_error& e) {
+          cout << endl;
+          cout << e.what() << endl;
+     }
+
      do {
-          vector<int> currentQuestion = GenerateRandomQuestion(mathLevel);
+          vector<int> currentQuestion;
+
+          try {
+               currentQuestion = GenerateRandomQuestion(mathLevel);
+
+          } catch (runtime_error& e) {
+               cout << endl;
+               cout << e.what() << endl;
+               return -1;
+          }
 
           isCorrect = GiveThreeAttempts (userName, currentQuestion);
 
@@ -70,13 +86,20 @@ int main () {
 
           allQuestions.push_back(currentQuestion);
 
-          userInput = YesNoQuestion(userName);
+          userInput = YesNoQuestion(userName + "Would you like to continue? ");
 
      } while (userInput == "yes" || userInput == "y");
 
      DisplaySummaryReport(allQuestions);
 
      cout << "Keep calm and do math" << endl;
+
+     try {
+          SaveCurrentGame(userName, allQuestions);
+     } catch (runtime_error& e) {
+          cout << endl;
+          cout << e.what() << endl;
+     }
 
      return 0;
 
