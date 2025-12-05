@@ -370,8 +370,12 @@ void DisplaySummaryReport(const vector<vector <int>> &allQuestions) {
 
  ****************************************************************************/
 
-void SaveCurrentGame (string userName, const vector<vector <int>> &allQuestions) {
+void YesNoQuestion(const char* str);
 
+void operator( rhs, const runtime_error& rhs);
+
+void SaveCurrentGame (string userName, const vector<vector <int>> &allQuestions, void mathlevel)
+{
     string userInput;
     ofstream outFS;
 
@@ -386,11 +390,12 @@ void SaveCurrentGame (string userName, const vector<vector <int>> &allQuestions)
     cout << "Saving game...please wait" << endl;
 
     outFS.open(FILE_NAME);
-        if (outFS.is_open()) {
-            throw >> runtime_error ("Could not open file " + FILE_NAME + " for writing");
-        }
+    if (outFS.is_open()) {
+        throw >> runtime_error ("Could not open file " + FILE_NAME + " for writing");
+    }
 
-    for () {
+    for ()
+    {
         for (int i = 0; i < allQuestions.size() ; i++) {
             outFS << allQuestions.at(i).at(0);
             outFS << allQuestions.at(i).at(1);
@@ -399,36 +404,38 @@ void SaveCurrentGame (string userName, const vector<vector <int>> &allQuestions)
         }
         outFS << endl;
     }
-        outFS.close();
+    outFS.close;
+    {
+        do
+            try {
+                SaveCurrentGame(userName, questions, {});
+            } catch (runtime_error &e) {
+                cout << e.what() << endl;
+                cout << "Sorry, unable to save the game." << endl;
+            }
 
-        cout << allQuestions.size() << " questions saved succesfully." <<  endl;
+        int LoadPreviousGame(string userName, vector<vector<int>>& allQuestions);
 
+        void push_back(const vector<vector<int>> &allQuestions);
+        int mathlevel;
+        int mathsymbol;
+        int leftNum;
+        bool infs;
+        while (infs>>mathlevel>>leftNum>>mathsymbol)
+            allQuestions.push_back(mathlevel,leftNum,mathsymbol);
+    }
+    throw runtime_error("Something went wrong with reading the."+FILE_NAME+"file");
 
+    return mathlevel;
+}
+try
+{
+    mathlevel=LoadPreviousGame(username,&allQuestions);
+} catch(runtime_error&e){
+    cout<<endl;
+    cout<<e.what()<<endl;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
