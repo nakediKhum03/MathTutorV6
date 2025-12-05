@@ -1,4 +1,3 @@
-
 /*
 * Title:       Math Tutor V6
 *Programer(s): Khumo Nakedi & Kezey Boye
@@ -78,8 +77,7 @@ void DisplayGameIntro() {
  *Get user's name, welcome user, and return username
  *******************************************************************/
 
-string GetUserName () {
-
+string GetUserName() {
     string userName = "?";
 
     cout << "What is your name?" << endl; // where the user puts there name
@@ -90,19 +88,16 @@ string GetUserName () {
 }
 
 
-
 /************************************************************
  *Generate each random question
  *Parameters: mathLevel used to set the left & right ranges
  *Returns the currents question's data as an int vector
  ************************************************************/
-int GetNumericValue () {
-
+int GetNumericValue() {
     int userAnswer;
 
 
     while (!(cin >> userAnswer)) {
-
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\tInvalid input!\n\tPlease enter a number:" << endl;
@@ -118,17 +113,15 @@ int GetNumericValue () {
  Returns: vector <int> {level, leftNum, mathOperator,
           rightNum, totalNum}
  *****************************************************/
-vector <int>GenerateRandomQuestion ( int mathLevel) {
-
+vector<int> GenerateRandomQuestion(int mathLevel) {
     enum MATH_TYPE { MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4 };
     MATH_TYPE mathType = MT_ADD;
 
-    int tempNum =0;
-    int leftNum =0;
-    int rightNum =0;
+    int tempNum = 0;
+    int leftNum = 0;
+    int rightNum = 0;
     char mathOperator = '?';
     int totalNum = 0;
-
 
 
     srand(time(0)); // Randomizing numbers
@@ -167,14 +160,8 @@ vector <int>GenerateRandomQuestion ( int mathLevel) {
             throw runtime_error("Invalid Math Type:" + mathType);
     }
 
-    vector <int> question;
-    question.push_back (mathLevel);
-    question.push_back (leftNum);
-    question.push_back (static_cast <int> (mathOperator));
-    question.push_back (rightNum);
-    question.push_back (totalNum);
 
-    return question;
+    return {mathLevel, leftNum, mathOperator, rightNum, totalNum};
 }
 
 /*************************************************
@@ -182,8 +169,7 @@ vector <int>GenerateRandomQuestion ( int mathLevel) {
  what level they are currently on
  *************************************************/
 
-bool GiveThreeAttempts (string userName, vector<int> currentQuestion) {
-
+bool GiveThreeAttempts(string userName, vector<int>& currentQuestion) {
     int userAnswer = 0;
     bool isCorrect = false;
     int attemptsUsed = 0;
@@ -195,9 +181,7 @@ bool GiveThreeAttempts (string userName, vector<int> currentQuestion) {
     int totalNum = currentQuestion.at(4);
 
 
-
     for (int i = 1; i <= MAX_ATTEMPTS; ++i) {
-
         cout << "[Level #" << mathLevel << "] " << userName << ", what is " << leftNum << " " << mathOperator << " " <<
                 rightNum << " = " << "?" << endl; // displays the question
         // ... your input handling stays the same ...
@@ -208,12 +192,14 @@ bool GiveThreeAttempts (string userName, vector<int> currentQuestion) {
         if (userAnswer == totalNum) {
             cout << "Excellent Job Einstein!" << endl;
             isCorrect = true;
-            currentQuestion.push_back(i);
+            attemptsUsed = i;
+            currentQuestion.push_back(attemptsUsed);
             break; // stop asking this question
         }
-        if(i == MAX_ATTEMPTS) {
+        if (i == MAX_ATTEMPTS) {
             cout << "Sorry, you're out of attempts. Correct answer: " << totalNum << endl;
-            currentQuestion.push_back(0);
+            attemptsUsed = 0;
+            currentQuestion.push_back(attemptsUsed);
         } else {
             cout << (MAX_ATTEMPTS - i) << " attempt/s left." << endl;
             cout << "Try Again" << endl;
@@ -221,7 +207,6 @@ bool GiveThreeAttempts (string userName, vector<int> currentQuestion) {
     }
     return isCorrect;
 }
-
 
 
 /**************************************************
@@ -238,17 +223,17 @@ string YesNoQuestion(string question) {
         cout << question << endl;
         getline(cin, userInput);
 
-        for (char & i : userInput) {
-            i = static_cast<char> (tolower(i));
+        for (char &i: userInput) {
+            i = static_cast<char>(tolower(i));
         }
 
         if (userInput == "y" || userInput == "yes" ||
             userInput == "n" || userInput == "no") {
             break;
-            } else {
-                cout << "Invalid input, please try again..." << endl;
-                cout << endl;
-            }
+        } else {
+            cout << "Invalid input, please try again..." << endl;
+            cout << endl;
+        }
     } // end of while true loop
 
 
@@ -259,16 +244,16 @@ string YesNoQuestion(string question) {
  Check for level change (up or down)
  ******************************************************/
 void CheckForLevelChange(int &totalCorrect, int &totalIncorrect, int &mathLevel) {
-    int LEVEL_RANGE_CHANGE= 10;
+    int LEVEL_RANGE_CHANGE = 10;
 
-    if (totalCorrect ==3) {
+    if (totalCorrect == 3) {
         mathLevel++;
         totalCorrect = 0;
         totalIncorrect = 0;
         cout << "You are currently on level " << mathLevel << endl;
         cout << "Your range is now from 1 to " << mathLevel * LEVEL_RANGE_CHANGE << endl;
         cout << endl;
-    } else if (totalIncorrect >=3 && totalIncorrect >1) {
+    } else if (totalIncorrect >= 3 && totalIncorrect > 1) {
         mathLevel--;
         totalIncorrect = 0;
         totalCorrect = 0;
@@ -286,7 +271,7 @@ void CheckForLevelChange(int &totalCorrect, int &totalIncorrect, int &mathLevel)
  answered questions with an average percentage score given at
  the end.
  ***********************************************************/
-void DisplaySummaryReport(const vector<vector <int>> &allQuestions) {
+void DisplaySummaryReport(const vector<vector<int> > &allQuestions) {
     int totalIncorrect = 0;
     int totalCorrect = 0;
     int mathLevel = 1;
@@ -300,47 +285,41 @@ void DisplaySummaryReport(const vector<vector <int>> &allQuestions) {
     cout << "          Summary Report           " << endl;
     cout << "===================================" << endl;
 
-    cout << left << setw (7) << "Level"
-         << left << setw (22) << "Question"
-         << left << setw (10) << "Attempts"
-         << "Results" << endl;
-    cout << "____ ______________________ __________ _______"<< endl;
+    cout << left << setw(7) << "Level"
+            << left << setw(22) << "Question"
+            << left << setw(10) << "Attempts"
+            << "Results" << endl;
+    cout << "____ ______________________ __________ _______" << endl;
     cout << endl;
 
 
-    for (int i = 0; i < static_cast<int>(allQuestions.size()); ++i) {
-
-             mathLevel = allQuestions.at(i).at(0);
-             leftNum = allQuestions.at(i).at(1);
-            mathOperator = static_cast<char>(allQuestions.at(i).at(2));
-             rightNum = allQuestions.at(i).at(3);
-            totalNum = allQuestions.at(i).at(4);
+    for (int i = 0; i < allQuestions.size(); ++i) {
+        mathLevel = allQuestions.at(i).at(0);
+        leftNum = allQuestions.at(i).at(1);
+        mathOperator = static_cast<char>(allQuestions.at(i).at(2));
+        rightNum = allQuestions.at(i).at(3);
+        totalNum = allQuestions.at(i).at(4);
         attemptsUsed = allQuestions.at(i).at(5);
 
 
-            cout << left << setw (7) << mathLevel;
+        cout << left << setw(7) << mathLevel
+                << left << setw(4) << leftNum
+                << " " << mathOperator << " "
+                << setw(4) << rightNum
+                << " = "
+                << setw(6) << totalNum
+                << "  ";
 
-            cout << left << setw (4) << leftNum;
-            cout << " " << mathOperator << " ";
-            cout << setw (4) << rightNum;
-            cout << " = ";
-            cout << setw(6) << totalNum;
+        cout << left << setw(10) << attemptsUsed;
 
-            cout << "  ";
-
-            cout << left << setw (10) << attemptsUsed;
-
-            if (attemptsUsed > 0 ) {
-                cout << "Correct!" << endl;
-                totalCorrect++;
-            } else {
-                cout << "Incorrect!" << endl;
-                totalIncorrect++;
-            }
+        if (attemptsUsed > 0) {
+            cout << "Correct!" << endl;
+            totalCorrect++;
+        } else {
+            cout << "Incorrect!" << endl;
+            totalIncorrect++;
         }
-
-
-
+    }
 
 
     int totalQs = totalCorrect + totalIncorrect;
@@ -356,22 +335,19 @@ void DisplaySummaryReport(const vector<vector <int>> &allQuestions) {
 
     cout << endl;
     cout << "That's all folks!" << endl;
-    cout << "Come back for version four to see what is in store!" << endl;
     cout << "End of program" << endl; // end of program
     cout << endl;
-
 }
 
 /****************************************************************************
 
  ****************************************************************************/
 
-void SaveCurrentGame (string userName, vector<vector <int>> &allQuestions) {
-
+void SaveCurrentGame(string userName, vector<vector<int> > &allQuestions) {
     string userInput;
     ofstream outFS;
 
-    userInput = YesNoQuestion ("Do you want to save the game? (y/n)");
+    userInput = YesNoQuestion("Do you want to save the game? (y/n)");
 
     if (userInput == "n" || userInput == "no") {
         cout << "Save game cancelled" << endl;
@@ -383,27 +359,26 @@ void SaveCurrentGame (string userName, vector<vector <int>> &allQuestions) {
 
     outFS.open(FILE_NAME);
 
-        if (outFS.is_open()) {
-            throw runtime_error ("Could not open file " + FILE_NAME + " for writing");
-        }
+    if (!outFS.is_open()) {
+        throw runtime_error("Could not open file " + FILE_NAME + " for writing");
+    }
 
     for (int i = 0; i < allQuestions.size(); ++i) {
-            outFS << allQuestions.at(i).at(0) << " "
-             << allQuestions.at(i).at(1) << " "
-             << allQuestions.at(i).at(2) << " "
-             << allQuestions.at(i).at(3) << " "
-            << allQuestions.at(i).at(4) << " "
-            << allQuestions.at(i).at(5) << endl;
-
+        outFS << allQuestions.at(i).at(0) << " "
+                << allQuestions.at(i).at(1) << " "
+                << allQuestions.at(i).at(2) << " "
+                << allQuestions.at(i).at(3) << " "
+                << allQuestions.at(i).at(4) << " "
+                << allQuestions.at(i).at(5) << endl;
     }
-        outFS.close();
+    outFS.close();
 
-        cout << allQuestions.size() << " questions saved succesfully." <<  endl;
+    cout << allQuestions.size() << " questions saved succesfully." << endl;
 
     return;
 }
 
-int LoadPreviousGame (string username, vector<vector <int>> &allQuestions) {
+int LoadPreviousGame(string username, vector<vector<int> > &allQuestions) {
     string userInput;
     ifstream inFS;
     int mathLevel = 1;
@@ -417,11 +392,11 @@ int LoadPreviousGame (string username, vector<vector <int>> &allQuestions) {
     inFS.open(FILE_NAME);
 
     if (!inFS.is_open()) {
-        cout << "Looks like you've never played this game before.";
+        cout << "Looks like you've never played this game before." << endl;
 
         return mathLevel;
     }
-    userInput = YesNoQuestion ("Do you want to load the game?");
+    userInput = YesNoQuestion("Do you want to load the game?");
 
     if (userInput == "n" || userInput == "no") {
         cout << "Not loading file...";
@@ -431,46 +406,15 @@ int LoadPreviousGame (string username, vector<vector <int>> &allQuestions) {
     cout << "Loading file..." << endl;
 
     while (inFS >> mathLevel >> leftNum >> mathOperator >> rightNum >> totalNum >> attemptsUsed) {
-        allQuestions.push_back({mathLevel, leftNum, mathOperator, rightNum, totalNum, attemptsUsed });
+        allQuestions.push_back({mathLevel, leftNum, mathOperator, rightNum, totalNum, attemptsUsed});
     }
 
     if (!inFS.eof()) {
-        throw runtime_error ("Something went wrong with reading the" + FILE_NAME + " file.");
+        throw runtime_error("Something went wrong with reading the" + FILE_NAME + " file.");
     }
-    inFS.close ();
+    inFS.close();
 
     cout << "There were " << allQuestions.size() << " questions saved" << endl;
 
     return mathLevel;
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

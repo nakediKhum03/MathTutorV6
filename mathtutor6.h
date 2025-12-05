@@ -21,7 +21,7 @@ void DisplayGameIntro ();
 string GetUserName ();
 vector <int>GenerateRandomQuestion (int mathLevel);
 int GetNumericValue();
-bool GiveThreeAttempts (string userName, vector <int> currentQuestion);
+bool GiveThreeAttempts (string userName, vector <int>& currentQuestion);
 void CheckForLevelChange (int &totalCorrect, int &totalIncorrect,
                           int &mathLevel);
 string YesNoQuestion (string question);
