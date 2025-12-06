@@ -86,7 +86,7 @@ int main () {
 
           allQuestions.push_back(currentQuestion);
 
-          userInput = YesNoQuestion(userName + " Would you like to continue? (yes/no)");
+          userInput = YesNoQuestion(userName + " would you like to continue? (yes/no)");
 
      } while (userInput == "yes" || userInput == "y");
 

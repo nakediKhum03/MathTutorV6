@@ -16,112 +16,117 @@ What is your name?
 
 Khumo
 
-Welcome, Khumo, to the Simply Silly Math Tutor!
+Welcome, Khumo , to the Simply Silly Math Tutor!
 
-[Level #1] Khumo, what is 7 - 3 = ?
+
+Do you want to load the game?
+
+n
+
+Not loading file...[Level #1] Khumo , what is 32 / 8 = ?
 
 4
 
 Excellent Job Einstein!
 
-Do you want to continue (y=yes || n=no)?
+Khumo  would you like to continue? (yes/no)
 
 y
 
-[Level #1] Khumo, what is 2 * 1 = ?
+[Level #1] Khumo , what is 6 - 2 = ?
 
-2
-
-Excellent Job Einstein!
-
-Do you want to continue (y=yes || n=no)?
-
-y
-
-[Level #1] Khumo, what is 24 / 8 = ?
-
-h
+r
 
 Invalid input!
 
 Please enter a number:
 
-3
+4
+
+Excellent Job Einstein!
+
+Khumo  would you like to continue? (yes/no)
+
+r
+
+Invalid input, please try again...
+
+
+
+Khumo  would you like to continue? (yes/no)
+
+yes
+
+[Level #1] Khumo , what is 3 * 10 = ?
+
+30
 
 Excellent Job Einstein!
 
 You are currently on level 2
 
-Your range is now from 1 to 0
+Your range is now from 1 to 20
 
+Khumo  would you like to continue? (yes/no)
 
+yes
 
-Do you want to continue (y=yes || n=no)?
+[Level #2] Khumo , what is 17 - 5 = ?
 
-y
-
-[Level #2] Khumo, what is 3 - 1 = ?
-
-1
-
-2 attempt/s left.
-
-Try Again
-
-[Level #2] Khumo, what is 3 - 1 = ?
-
-2
+12
 
 Excellent Job Einstein!
 
-Do you want to continue (y=yes || n=no)?
+Khumo  would you like to continue? (yes/no)
 
-y
+yes
 
-[Level #2] Khumo, what is 7 * 15 = ?
+[Level #2] Khumo , what is 8 + 11 = ?
 
-100
+12
 
 2 attempt/s left.
 
 Try Again
 
-[Level #2] Khumo, what is 7 * 15 = ?
+[Level #2] Khumo , what is 8 + 11 = ?
 
-120
+14
 
 1 attempt/s left.
 
 Try Again
 
-[Level #2] Khumo, what is 7 * 15 = ?
+[Level #2] Khumo , what is 8 + 11 = ?
 
-104
+17
 
-Sorry, you're out of attempts. Correct answer: 105
+Sorry, you're out of attempts. Correct answer: 19
 
-Do you want to continue (y=yes || n=no)?
-
+Khumo  would you like to continue? (yes/no)
 n
 
 ===================================
 
-Summary Report
+Summary Report           
 
 ===================================
 
-<div align="right">
+Level  Question              Attempts  Results
 
-| Level | Question        | Attempts | Result     |
-|------:|----------------:|----------:|-----------:|
-|     1 | 7 - 3 = 4       |        1 | Correct!   |
-|     2 | 1 * 2 = 2       |        1 | Correct!   |
-|     1 | 24 / 8 = 3      |        1 | Correct!   |
-|     2 | 3 - 1 = 2       |        2 | Correct!   |
-|     2 | 7 * 15 = 105    |        0 | Incorrect! |
+____ ______________________ __________ _______
 
-</div>
 
+
+1      32   / 8    = 4       1         Correct!
+
+1      6    - 2    = 4       1         Correct!
+
+1      3    * 10   = 30      1         Correct!
+
+2      17   - 5    = 12      1         Correct!
+
+2      8    + 11   = 19      0         Incorrect!
 
 
 
@@ -132,12 +137,21 @@ Total Incorrect: 1
 Average:         80%
 
 
-
 That's all folks!
-Thank you!
+
 End of program
 
+
+
 Keep calm and do math
+
+Do you want to save the game? (y/n)
+
+no
+
+Save game cancelled
+
+
 
 Process finished with exit code 0
 

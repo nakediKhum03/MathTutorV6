@@ -253,7 +253,7 @@ void CheckForLevelChange(int &totalCorrect, int &totalIncorrect, int &mathLevel)
         cout << "You are currently on level " << mathLevel << endl;
         cout << "Your range is now from 1 to " << mathLevel * LEVEL_RANGE_CHANGE << endl;
         cout << endl;
-    } else if (totalIncorrect >= 3 && totalIncorrect > 1) {
+    } else if (totalIncorrect == 3) {
         mathLevel--;
         totalIncorrect = 0;
         totalCorrect = 0;
@@ -261,6 +261,7 @@ void CheckForLevelChange(int &totalCorrect, int &totalIncorrect, int &mathLevel)
         cout << "Your range is now from 1 to " << mathLevel * LEVEL_RANGE_CHANGE << endl;
         cout << endl;
     }
+    return;
 }
 
 /***********************************************************
@@ -360,7 +361,7 @@ void SaveCurrentGame(string userName, vector<vector<int> > &allQuestions) {
     outFS.open(FILE_NAME);
 
     if (!outFS.is_open()) {
-        throw runtime_error("Could not open file " + FILE_NAME + " for writing");
+        throw runtime_error("Could not open file " + FILE_NAME + " for writing.");
     }
 
     for (int i = 0; i < allQuestions.size(); ++i) {
@@ -377,6 +378,10 @@ void SaveCurrentGame(string userName, vector<vector<int> > &allQuestions) {
 
     return;
 }
+/*****************
+ *
+ ***************/
+
 
 int LoadPreviousGame(string username, vector<vector<int> > &allQuestions) {
     string userInput;
