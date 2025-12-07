@@ -6,7 +6,7 @@
  Program.....: MathTutor V5
  Programmer..:Khumo Nakedi
  Date........:11/16/2025
- replit URL..:https://github.com/nakediKhum03/MathTutorV5.git
+ replit URL..: https://github.com/nakediKhum03/MathTutorV6.git
  Description.:This file contains all the prototypes for the functions that the m,ain function calls
  **************************************************************************************************/
 
