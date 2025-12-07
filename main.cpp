@@ -34,48 +34,53 @@
 #include <vector> // stroring questions in 2D vector
 #include <string> // string data types
 
-#include "mathtutor6.h"
+#include "mathtutor6.h" // get main functions from this
 using namespace std;
 
 
 int main () {
-     vector<vector<int>> allQuestions;
+     vector<vector<int>> allQuestions; // 2D vector to store all questions asked during the game
 
      string userName = "?";
-     string userInput = "?";
+     string userInput = "?"; // "?" for a placeholder
 
      int totalCorrect = 0;
      int totalIncorrect = 0;
-     int mathLevel = 1;
+     int mathLevel = 1; // The user begins at 1 when they start
 
-     bool isCorrect = false;
+     bool isCorrect = false; // if most recent question was answered
 
-     srand(time(0));
+     srand(time(0)); // seed random number
 
-     DisplayGameIntro();
-     userName = GetUserName();
+     DisplayGameIntro(); // displays form main tutor
+     userName = GetUserName(); // calling GetUserName function from math tutor
 
+     //attempt to load previous game
      try {
           mathLevel = LoadPreviousGame (userName, allQuestions);
-     } catch (runtime_error& e) {
+     } catch (runtime_error& e) { // throw catcher
           cout << endl;
-          cout << e.what() << endl;
+          cout << e.what() << endl; // display any file loading error
      }
 
+     // main game loop - continues if user wants to play
      do {
-          vector<int> currentQuestion;
+          vector<int> currentQuestion; //stores one questions data and its data
 
+          // generate new random question based on level
           try {
                currentQuestion = GenerateRandomQuestion(mathLevel);
 
           } catch (runtime_error& e) {
                cout << endl;
-               cout << e.what() << endl;
-               return -1;
+               cout << e.what() << endl; //displays any question generation error
+               return -1; // exit program with error code
           }
 
           isCorrect = GiveThreeAttempts (userName, currentQuestion);
+          // Gives user 3 attemopts to answer the question
 
+          // Update totals based on whether they got it right or not
           if (isCorrect) {
                totalCorrect++;
           } else {
@@ -83,25 +88,28 @@ int main () {
           }
 
           CheckForLevelChange (totalCorrect, totalIncorrect, mathLevel);
+          // Level change with data stored
 
           allQuestions.push_back(currentQuestion);
+          // stores this questions and its attempt results
 
           userInput = YesNoQuestion(userName + " would you like to continue? (yes/no)");
 
-     } while (userInput == "yes" || userInput == "y");
+     } while (userInput == "yes" || userInput == "y"); // As long as the user says yes
 
-     DisplaySummaryReport(allQuestions);
+     DisplaySummaryReport(allQuestions); // Summary report will be displayed with all questions
 
      cout << "Keep calm and do math" << endl;
 
+     // Error handling
      try {
           SaveCurrentGame(userName, allQuestions);
-     } catch (runtime_error& e) {
+     } catch (runtime_error& e) { // throw catcher
           cout << endl;
-          cout << e.what() << endl;
+          cout << e.what() << endl; // displays error message
      }
 
-     return 0;
+     return 0; // end of program
 
 
 
